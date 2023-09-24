@@ -19,10 +19,10 @@ body {
   align-items: center;
   width: 100%;
   margin-bottom: 20px;
+  text-align: center;
 }
 
-.calendar {
-margin-top: 20px;
+#calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 1px;
@@ -33,7 +33,6 @@ margin-top: 20px;
   overflow: hidden;
   max-width: 600px;
   min-width: 600px;
-	border: 1px solid;
   margin: auto;
   width: 50%;
   padding: 10px;
@@ -66,4 +65,8 @@ margin-top: 20px;
 
 .green {
   background-color: #80ff80;
+}
+
+.button {
+  width: 100%;
 }

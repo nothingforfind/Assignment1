@@ -1,12 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+  /*Get tháng năm*/
   const currentDate = new Date();
   let currentMonth = currentDate.getMonth();
   let currentYear = currentDate.getFullYear();
 
+  /*Get các element từ HTML*/
   const monthYearDisplay = document.getElementById("monthYearDisplay");
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
-  const calendar = document.querySelector(".calendar");
+  const calendar = document.getElementById("calendar");
 
   function updateCalendar() {
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -19,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     calendar.innerHTML = "";
 
+    /*Tạo div day-header có 7 ngày trong tuần*/
     const dayHeaders = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     for (let i = 0; i < dayHeaders.length; i++) {
       const dayHeader = document.createElement("div");
@@ -27,17 +31,20 @@ document.addEventListener("DOMContentLoaded", function () {
       calendar.appendChild(dayHeader);
     }
 
+    /*Những ngày nào dưới ngày bắt đầu của tháng thì là emtyDay*/
     for (let i = 0; i < startingDay; i++) {
       const emptyDay = document.createElement("div");
       emptyDay.classList.add("day");
       calendar.appendChild(emptyDay);
     }
 
+    /*Chạy từ ngày 1 đến ngày cuối của tháng*/
     for (let i = 1; i <= daysInMonth; i++) {
       const dayElement = document.createElement("div");
       dayElement.textContent = i;
       dayElement.classList.add("day");
 
+      /*Nếu ngày hiện tại thì add màu xanh, tiếp tục với đỏ và xanh dương*/
       if (
         currentYear === currentDate.getFullYear() &&
         currentMonth === currentDate.getMonth() &&
