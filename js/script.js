@@ -6,24 +6,30 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentYear = currentDate.getFullYear();
 
   /*Get các element từ HTML*/
-  const monthYearDisplay = document.getElementById("monthYearDisplay");
+  const monthDisplay = document.getElementById("monthDisplay");
+  const equalDisplay = document.getElementById("equalDisplay");
+  const yearDisplay = document.getElementById("yearDisplay");
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
   const calendar = document.getElementById("calendar");
+
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
 
   function updateCalendar() {
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
     const startingDay = new Date(currentYear, currentMonth, 1).getDay();
 
-    monthYearDisplay.textContent = new Intl.DateTimeFormat("en-US", {
-      year: "numeric",
-      month: "long",
-    }).format(new Date(currentYear, currentMonth, 1));
+    monthDisplay.textContent = `${monthNames[currentMonth]}`;
+    equalDisplay.textContent =  ` == `;
+    yearDisplay.textContent = `${currentYear}`;
 
     calendar.innerHTML = "";
 
     /*Tạo div day-header có 7 ngày trong tuần*/
-    const dayHeaders = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const dayHeaders = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     for (let i = 0; i < dayHeaders.length; i++) {
       const dayHeader = document.createElement("div");
       dayHeader.textContent = dayHeaders[i];
@@ -35,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = 0; i < startingDay; i++) {
       const emptyDay = document.createElement("div");
       emptyDay.classList.add("day");
+      emptyDay.classList.add("gray");
       calendar.appendChild(emptyDay);
     }
 

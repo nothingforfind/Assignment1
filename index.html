@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
     <title>Monthly Calendar</title>
 </head>
 <body>
-<div class="container-md mt-2">
-
+<div>
     <!--Row hiển thị ngày tháng và button-->
-    <div class="row m-3">
-        <div class="col-md-4"></div>
+    <div class="title row">
+        <div class="col-md-1" id="prevBtn"><p class="label-text"><<</p></div>
+        <div class="col-md-3"></div>
         <div class="col-md-1">
-            <button id="prevBtn" class="button">Previous</button>
+            <p id="monthDisplay" class="text-center label-text"></p>
         </div>
         <div class="col-md-2">
-            <p id="monthYearDisplay" class="text-center"></p>
+            <p id="equalDisplay" class="text-center label-text"></p>
         </div>
         <div class="col-md-1">
-            <button id="nextBtn" class="button">Next</button>
+            <p id="yearDisplay" class="text-center label-text"></p>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-3"></div>
+        <div class="col-md-1" id="nextBtn"><p class="label-text">>></p></div>
     </div>
 
     <!--Từng div ngày tháng sẽ được add vào đây-->
