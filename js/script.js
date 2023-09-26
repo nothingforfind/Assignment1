@@ -19,8 +19,12 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   function updateCalendar() {
+    /*Muốn lấy số ngày trong tháng thì hàm Date sử dụng index tháng nên +1*/
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+    /*Muốn lấy ngày thứ trong tháng hàm Date lại sử dụng tháng đúng*/
     const startingDay = new Date(currentYear, currentMonth, 1).getDay();
+    console.log(new Date(currentYear, currentMonth, 1).getDay());
 
     monthDisplay.textContent = `${monthNames[currentMonth]}`;
     equalDisplay.textContent =  ` == `;
@@ -37,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
       calendar.appendChild(dayHeader);
     }
 
-    /*Những ngày nào dưới ngày bắt đầu của tháng thì là emtyDay*/
+    /*Những ngày trong tuần nhỏ hơn startingDay thì in ra màu xám.*/
     for (let i = 0; i < startingDay; i++) {
       const emptyDay = document.createElement("div");
       emptyDay.classList.add("day");
@@ -47,6 +51,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /*Chạy từ ngày 1 đến ngày cuối của tháng*/
     for (let i = 1; i <= daysInMonth; i++) {
+
+      /*Tạo 1 div với class day*/
       const dayElement = document.createElement("div");
       dayElement.textContent = i;
       dayElement.classList.add("day");
@@ -58,16 +64,21 @@ document.addEventListener("DOMContentLoaded", function () {
         i === currentDate.getDate()
       ) {
         dayElement.classList.add("green");
+
+        /*Nếu là ngày chủ nhật thì add class red*/
       } else if (new Date(currentYear, currentMonth, i).getDay() === 0) {
         dayElement.classList.add("red");
+        /*Còn lại add class blue*/
       } else {
         dayElement.classList.add("blue");
       }
 
+      /*Add vào calendar*/
       calendar.appendChild(dayElement);
     }
   }
 
+  /*Khi nút prev được nhấn tháng --*/
   prevBtn.addEventListener("click", function () {
     if (currentMonth === 0) {
       currentMonth = 11;
@@ -78,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCalendar();
   });
 
+  /*Khi nút next được nhấn tháng ++*/
   nextBtn.addEventListener("click", function () {
     if (currentMonth === 11) {
       currentMonth = 0;
